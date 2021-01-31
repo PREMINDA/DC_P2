@@ -10,12 +10,16 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _Speed = 2.5f;
     private PlayerAnimation _Movedirection;
-    
+    [SerializeField]
+    private SpriteRenderer _Flip_SpriteRen;
+   
+
     // Start is called before the first frame update
     void Start()
     {
-        _rg = gameObject.GetComponent<Rigidbody2D>();
-        _Movedirection = transform.GetComponent<PlayerAnimation>();
+        _rg = GetComponent<Rigidbody2D>();
+        _Movedirection = GetComponent<PlayerAnimation>();
+        
        
 
     }
@@ -40,8 +44,10 @@ public class Player : MonoBehaviour
             
            
         }
+        Flip(Hmove);
         
         _rg.velocity = new Vector2(Hmove*_Speed, _rg.velocity.y);
+
         _Movedirection.Move(Hmove);
 
     }
@@ -57,4 +63,17 @@ public class Player : MonoBehaviour
         return false;
 
     }
+
+    public void Flip(float move)
+    {
+        if (move>0)
+        {
+            _Flip_SpriteRen.flipX = false;
+            Debug.Log("No Flip Here");
+        }else if (move < 0)
+        {
+            _Flip_SpriteRen.flipX = true;
+
+        }
+    } 
 }

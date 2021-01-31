@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerAnimation : MonoBehaviour
 {
     private Animator _anim;
+    
     void Start()
     {
 
@@ -17,7 +18,11 @@ public class PlayerAnimation : MonoBehaviour
         _anim = GetComponentInChildren<Animator>();
     }
     public void Move(float move)
+
     {
+        
         _anim.SetFloat("Move", Mathf.Abs(move));
+
+        
     }
 }
