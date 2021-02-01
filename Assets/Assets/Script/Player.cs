@@ -38,6 +38,10 @@ public class Player : MonoBehaviour
         float Hmove = Input.GetAxisRaw("Horizontal");
         float Vmove = Input.GetAxisRaw("Vertical");
         _grounded = Isground();
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            _Movedirection.Attack();
+        }
         if (Input.GetKeyDown(KeyCode.Space) && Isground() == true)
         {
            
