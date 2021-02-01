@@ -4,25 +4,32 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
-    private Animator _anim;
-    
+    [SerializeField]
+    private Animator _animMove;
+  
+
     void Start()
     {
 
-        
+        _animMove = GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _anim = GetComponentInChildren<Animator>();
+       ;
     }
     public void Move(float move)
 
     {
-        
-        _anim.SetFloat("Move", Mathf.Abs(move));
 
-        
+        _animMove.SetFloat("Move", Mathf.Abs(move));
+
+
+    }
+    public void Jump(bool isjump)
+    {
+        _animMove.SetBool("jumping", isjump);
+        Debug.Log(isjump);
     }
 }

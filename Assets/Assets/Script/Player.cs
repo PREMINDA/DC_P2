@@ -30,8 +30,6 @@ public class Player : MonoBehaviour
         Movement();
         
         
-        
-        
     }
     
     private void Movement() {
@@ -41,6 +39,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && Isground() == true)
         {
             _rg.velocity = new Vector2(_rg.velocity.x, _jumpheight);
+            _Movedirection.Jump(true);
             
            
         }
@@ -55,9 +54,11 @@ public class Player : MonoBehaviour
     private bool Isground()
     {
 
-        RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, 1 << 8);
+        RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, Vector2.down, 1f, 1 << 8);
+        Debug.DrawRay(transform.position, Vector3.down, Color.green);
         if (hitinfo.collider != null)
         {
+            _Movedirection.Jump(false);
             return true;
         }
         return false;
