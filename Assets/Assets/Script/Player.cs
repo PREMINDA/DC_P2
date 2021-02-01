@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private PlayerAnimation _Movedirection;
     [SerializeField]
     private SpriteRenderer _Flip_SpriteRen;
+    private bool _grounded = false;
    
 
     // Start is called before the first frame update
@@ -36,10 +37,13 @@ public class Player : MonoBehaviour
 
         float Hmove = Input.GetAxisRaw("Horizontal");
         float Vmove = Input.GetAxisRaw("Vertical");
+        _grounded = Isground();
         if (Input.GetKeyDown(KeyCode.Space) && Isground() == true)
         {
+           
             _rg.velocity = new Vector2(_rg.velocity.x, _jumpheight);
             _Movedirection.Jump(true);
+            StartCoroutine(changjumpanim());
             
            
         }
@@ -53,12 +57,15 @@ public class Player : MonoBehaviour
    
     private bool Isground()
     {
+        
 
-        RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, Vector2.down, 1f, 1 << 8);
-        Debug.DrawRay(transform.position, Vector3.down, Color.green);
-        if (hitinfo.collider != null)
+        //RaycastHit2D hitinfo = Physics2D.Raycast(transform.position, Vector2.down, 0.6f, 1 << 8);
+        RaycastHit2D hit=Physics2D.CircleCast(transform.position, 0.6f, Vector2.down,0.6f,1<<8);
+        
+        //Debug.DrawRay(transform.position, Vector3.down, Color.green);
+        if (hit.collider != null)
         {
-            _Movedirection.Jump(false);
+           
             return true;
         }
         return false;
@@ -77,4 +84,9 @@ public class Player : MonoBehaviour
 
         }
     } 
+    public IEnumerator changjumpanim()
+    {
+        yield return new WaitForSeconds(1f);
+        _Movedirection.Jump(false);
+    }
 }
