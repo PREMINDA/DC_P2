@@ -6,12 +6,14 @@ public class PlayerAnimation : MonoBehaviour
 {
     [SerializeField]
     private Animator _animMove;
-  
+    private Animator _animarc;
+
 
     void Start()
     {
 
         _animMove = GetComponentInChildren<Animator>();
+        _animarc = transform.GetChild(1).GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -35,5 +37,10 @@ public class PlayerAnimation : MonoBehaviour
     public void Attack()
     {
         _animMove.SetTrigger("attack");
+        Attack_Arc();
+    }
+    public void Attack_Arc()
+    {
+        _animarc.SetTrigger("arcanim");
     }
 }

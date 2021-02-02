@@ -13,7 +13,9 @@ public class Player : MonoBehaviour
     [SerializeField]
     private SpriteRenderer _Flip_SpriteRen;
     private bool _grounded = false;
-   
+    [SerializeField]
+    private SpriteRenderer _Flip_Swordarc;
+
 
     // Start is called before the first frame update
     void Start()
@@ -81,10 +83,22 @@ public class Player : MonoBehaviour
         if (move>0)
         {
             _Flip_SpriteRen.flipX = false;
+            _Flip_Swordarc.flipX = false;
+            _Flip_Swordarc.flipY = false;
+
+            Vector3 newpos = _Flip_Swordarc.transform.localPosition;
+            newpos.x = 0.5f;
+            _Flip_Swordarc.transform.localPosition = newpos;
+
             Debug.Log("No Flip Here");
         }else if (move < 0)
         {
             _Flip_SpriteRen.flipX = true;
+            _Flip_Swordarc.flipX =false;
+            _Flip_Swordarc.flipY = true;
+            Vector3 newpos = _Flip_Swordarc.transform.localPosition;
+            newpos.x = -0.5f;
+            _Flip_Swordarc.transform.localPosition = newpos;
 
         }
     } 
