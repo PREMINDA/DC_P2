@@ -4,13 +4,32 @@ using UnityEngine;
 
 public class Giant :Enemy
 {
-    // Start is called before the first frame update
+
+    protected Vector3 targePos;
+    [SerializeField]
+
     void Start()
     {
         Attack();
+        targePos = pointB.position;
         
     }
 
-    // Update is called once per frame
-   
+    public override void Update()
+    {
+        
+        
+        if(transform.position == pointA.position)
+        {
+            targePos = pointB.position;
+        }else if (transform.position == pointB.position)
+        {
+            targePos = pointA.position;
+        }
+        transform.position = Vector3.MoveTowards(transform.position, targePos, Time.deltaTime * 3);
+
+    }
+
+  
+
 }
