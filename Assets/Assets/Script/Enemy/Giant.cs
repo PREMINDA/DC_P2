@@ -8,12 +8,16 @@ public class Giant :Enemy
     protected Vector3 targePos;
     private Animator _giantAnim;
     private bool _animswitch = false;
+    private bool _giantFlip =  false;
+    private SpriteRenderer _gianSpriteren;
+    
 
     void Start()
     {
         Attack();
         targePos = pointB.position;
         _giantAnim = transform.GetChild(0).GetComponent<Animator>();
+        _gianSpriteren = transform.GetChild(0).GetComponent<SpriteRenderer>();
         
         
 
@@ -55,10 +59,17 @@ public class Giant :Enemy
     }
     private IEnumerator stop()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(6f);
         _animswitch = false;
         _giantAnim.SetTrigger("walk");
-       
+        if(targePos == pointB.position)
+        {
+            _gianSpriteren.flipX = false;
+        }
+       else if(targePos == pointA.position)
+        {
+            _gianSpriteren.flipX = true;
+        }
     }
 
   
