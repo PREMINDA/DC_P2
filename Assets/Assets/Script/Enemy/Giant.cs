@@ -6,28 +6,59 @@ public class Giant :Enemy
 {
 
     protected Vector3 targePos;
-    [SerializeField]
+    private Animator _giantAnim;
+    private bool _animswitch = false;
 
     void Start()
     {
         Attack();
         targePos = pointB.position;
+        _giantAnim = transform.GetChild(0).GetComponent<Animator>();
         
+        
+
     }
 
     public override void Update()
     {
-        
-        
-        if(transform.position == pointA.position)
+        if (_animswitch == true)
         {
-            targePos = pointB.position;
-        }else if (transform.position == pointB.position)
-        {
-            targePos = pointA.position;
+            _giantAnim.SetTrigger("Idal");
+            StartCoroutine(stop());
         }
-        transform.position = Vector3.MoveTowards(transform.position, targePos, Time.deltaTime * 3);
+        else if (_animswitch == false)
+        {
+            Movement();
+        }
 
+    }
+
+    void Movement()
+    {
+        if (transform.position == pointA.position)
+        {
+           
+            targePos = pointB.position;
+            _animswitch = true;
+
+
+        }
+        else if (transform.position == pointB.position)
+        {
+            
+            targePos = pointA.position;
+            _animswitch = true;
+
+        }
+        transform.position = Vector3.MoveTowards(transform.position, targePos, Time.deltaTime * 1.5f);
+
+    }
+    private IEnumerator stop()
+    {
+        yield return new WaitForSeconds(5.0f);
+        _animswitch = false;
+        _giantAnim.SetTrigger("walk");
+       
     }
 
   
