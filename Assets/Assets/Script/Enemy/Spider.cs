@@ -4,5 +4,9 @@ using UnityEngine;
 
 public class Spider : Enemy
 {
-
+    public override void Init()
+    {
+        base.Init();
+        speed = 1;
+    }
 }

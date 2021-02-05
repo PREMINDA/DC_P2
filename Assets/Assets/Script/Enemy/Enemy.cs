@@ -21,8 +21,9 @@ public abstract class Enemy : MonoBehaviour
     {
         _anim = transform.GetChild(0).GetComponent<Animator>();
         _spriteRender = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        speed = 2;
     }
-    public void Start()
+    public virtual void Start()
     {
         Init();
     }
@@ -58,7 +59,7 @@ public abstract class Enemy : MonoBehaviour
             targetPos = pointB.position;
             _anim.SetTrigger("Idal");
         }
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * 2);
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
 
     }
     
