@@ -17,6 +17,8 @@ public class Skelton : Enemy,IDamageable
     {
         Health--;
         _anim.SetTrigger("Hit");
+        ishit = true;
+        _anim.SetBool("InCombat", true);
         if(Health == 0 )
         {
             Destroy(this.gameObject);

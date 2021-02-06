@@ -12,6 +12,8 @@ public abstract class Enemy : MonoBehaviour
     protected int gems;
     [SerializeField]
     protected Transform pointA, pointB;
+    protected bool ishit = false;
+    protected Player player;
 
     protected Vector3 targetPos;
     protected Animator _anim;
@@ -21,6 +23,7 @@ public abstract class Enemy : MonoBehaviour
     {
         _anim = transform.GetChild(0).GetComponent<Animator>();
         _spriteRender = transform.GetChild(0).GetComponent<SpriteRenderer>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         speed = 2;
     }
     public virtual void Start()
@@ -30,7 +33,7 @@ public abstract class Enemy : MonoBehaviour
 
     public virtual void Update()
     {
-        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Idal_anim"))
+        if (_anim.GetCurrentAnimatorStateInfo(0).IsName("Idal_anim") && _anim.GetBool("InCombat")==false)
         {
             return;
         }
@@ -59,7 +62,17 @@ public abstract class Enemy : MonoBehaviour
             targetPos = pointB.position;
             _anim.SetTrigger("Idal");
         }
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
+        if (ishit == false)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
+        }
+
+        float distance = Vector3.Distance(transform.localPosition, player.transform.localPosition);
+        if (distance > 2.0f)
+        {
+            ishit = false;
+            _anim.SetBool("InCombat", false);
+        }
 
     }
     
