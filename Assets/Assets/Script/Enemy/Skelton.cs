@@ -5,7 +5,7 @@ using UnityEngine;
 public class Skelton : Enemy,IDamageable
 {
     public int Health { get; set; }
-
+    
     public override void Init()
     {
         base.Init();
@@ -16,10 +16,12 @@ public class Skelton : Enemy,IDamageable
     public void Damage()
     {
         Health--;
-        if(Health == 0)
+        _anim.SetTrigger("Hit");
+        if(Health == 0 )
         {
             Destroy(this.gameObject);
+            
         }
     }
-
+    
 }
