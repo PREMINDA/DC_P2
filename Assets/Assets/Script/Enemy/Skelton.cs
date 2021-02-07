@@ -11,7 +11,31 @@ public class Skelton : Enemy,IDamageable
         base.Init();
         speed = 1;
         Health = base.health;
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
+    public override void Movement()
+    {
+        base.Movement();
+
+        if (distance < 3)
+        {
+            _anim.SetTrigger("Idal");
+            Vector3 derection = player.transform.localPosition - this.transform.localPosition;
+            Debug.Log(derection.x);
+            ishit = true;
+            if (derection.x < 0 && _spriteRender.flipX == false)
+            {
+                _spriteRender.flipX = true;
+            }
+            else if (derection.x > 0 && _spriteRender.flipX == false)
+            {
+                _spriteRender.flipX = false;
+            }
+        }
+
+    }
+
+
 
     public void Damage()
     {

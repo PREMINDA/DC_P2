@@ -14,10 +14,12 @@ public abstract class Enemy : MonoBehaviour
     protected Transform pointA, pointB;
     protected bool ishit = false;
     protected Player player;
+    protected float distance;
 
     protected Vector3 targetPos;
     protected Animator _anim;
     protected SpriteRenderer _spriteRender;
+    
 
     public virtual void Init()
     {
@@ -67,13 +69,16 @@ public abstract class Enemy : MonoBehaviour
             transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * speed);
         }
 
-        float distance = Vector3.Distance(transform.localPosition, player.transform.localPosition);
-        if (distance > 2.0f)
+        distance = Vector3.Distance(transform.localPosition, player.transform.localPosition);
+        if (distance > 3.0f)
         {
             ishit = false;
             _anim.SetBool("InCombat", false);
-        }
 
+        }
+     
+
+        
     }
     
     
