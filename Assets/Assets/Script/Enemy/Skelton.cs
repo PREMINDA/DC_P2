@@ -21,7 +21,7 @@ public class Skelton : Enemy,IDamageable
         {
             
             Vector3 derection = player.transform.localPosition - this.transform.localPosition;
-            Debug.Log(derection.x);
+            
             
             if (derection.x < 0 && _anim.GetBool("InCombat") == true)
             {

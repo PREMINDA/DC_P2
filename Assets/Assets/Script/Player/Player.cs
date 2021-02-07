@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IDamageable
 {
     private Rigidbody2D _rg;
     [SerializeField]
@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     private bool _grounded = false;
     [SerializeField]
     private SpriteRenderer _Flip_Swordarc;
+    public int Health { get; set; }
 
 
     // Start is called before the first frame update
@@ -22,7 +23,8 @@ public class Player : MonoBehaviour
     {
         _rg = GetComponent<Rigidbody2D>();
         _Movedirection = GetComponent<PlayerAnimation>();
-        
+
+        Health = 8;
        
 
     }
@@ -33,6 +35,10 @@ public class Player : MonoBehaviour
         Movement();
         
         
+    }
+    public void Damage()
+    {
+        Debug.Log("Player get Damage()");
     }
     
     private void Movement() {
@@ -90,7 +96,7 @@ public class Player : MonoBehaviour
             newpos.x = 0.5f;
             _Flip_Swordarc.transform.localPosition = newpos;
 
-            Debug.Log("No Flip Here");
+           
         }else if (move < 0)
         {
             _Flip_SpriteRen.flipX = true;
