@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class Enemy : MonoBehaviour
+public abstract class Enemy : MonoBehaviour,IDamageable
 {
     [SerializeField]
-    protected int health;
+    protected int health =5;
     [SerializeField]
     protected int speed;
     [SerializeField]
@@ -19,7 +19,8 @@ public abstract class Enemy : MonoBehaviour
     protected Vector3 targetPos;
     protected Animator _anim;
     protected SpriteRenderer _spriteRender;
-    
+    public int Health { get; set; }
+
 
     public virtual void Init()
     {
@@ -27,6 +28,7 @@ public abstract class Enemy : MonoBehaviour
         _spriteRender = transform.GetChild(0).GetComponent<SpriteRenderer>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         speed = 2;
+        Health = health;
     }
     public virtual void Start()
     {
@@ -76,11 +78,40 @@ public abstract class Enemy : MonoBehaviour
             _anim.SetBool("InCombat", false);
 
         }
-     
 
-        
+
+        if (distance < 3)
+        {
+
+            Vector3 derection = player.transform.localPosition - this.transform.localPosition;
+
+
+            if (derection.x < 0 && _anim.GetBool("InCombat") == true)
+            {
+                _spriteRender.flipX = true;
+            }
+            else if (derection.x > 0 && _anim.GetBool("InCombat") == true)
+            {
+                _spriteRender.flipX = false;
+            }
+        }
+
+
+
     }
-    
-    
+    public virtual void Damage()
+    {
+        Health--;
+        _anim.SetTrigger("Hit");
+        ishit = true;
+        _anim.SetBool("InCombat", true);
+        if (Health == 0)
+        {
+            Destroy(this.gameObject);
+
+        }
+    }
+
+
 
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Spider : Enemy,IDamageable
+public class Spider : Enemy
 {
-    public int Health { get; set; }
+    
 
    
     public override void Init()
@@ -12,9 +12,6 @@ public class Spider : Enemy,IDamageable
         base.Init();
         speed = 1;
     }
-    public void Damage()
-    {
-        
-    }
+  
 
 }
