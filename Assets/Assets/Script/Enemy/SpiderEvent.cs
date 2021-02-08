@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class SpiderEvent : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Spider spider;
+
+    private void Start()
+    {
+        spider = GameObject.FindGameObjectWithTag("Spider").GetComponent<Spider>();
+    }
     public void fire()
     {
         Debug.Log("Spider Should Attack");
+        spider.attack();
     }
 }
