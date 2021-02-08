@@ -4,14 +4,18 @@ using UnityEngine;
 
 public class Spider : Enemy
 {
-    
 
-   
-    public override void Init()
+
+
+    //public override void Init()
+    //{
+    //    base.Init();
+    //    speed = 1;
+    //}
+    public override void Movement()
     {
-        base.Init();
-        speed = 1;
+        
     }
-  
+
 
 }
