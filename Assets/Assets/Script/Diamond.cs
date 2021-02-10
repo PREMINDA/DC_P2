@@ -5,6 +5,7 @@ using UnityEngine;
 public class Diamond : MonoBehaviour
 {
     private Player player;
+    public int gem = 1;
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -21,7 +22,7 @@ public class Diamond : MonoBehaviour
         if(collision.tag == "Player")
         {
             
-            player.Collect(1);
+            player.Collect(gem);
             Destroy(this.gameObject);
         }
     }

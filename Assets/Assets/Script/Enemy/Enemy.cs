@@ -12,6 +12,8 @@ public abstract class Enemy : MonoBehaviour,IDamageable
     protected int gems;
     [SerializeField]
     protected Transform pointA, pointB;
+    [SerializeField]
+    protected GameObject diamond_prefab;
     protected bool ishit = false;
     protected Player player;
     protected float distance;
@@ -107,8 +109,11 @@ public abstract class Enemy : MonoBehaviour,IDamageable
         _anim.SetBool("InCombat", true);
         if (Health == 0)
         {
+
+            GameObject dia = Instantiate(diamond_prefab, transform.position, Quaternion.identity) as GameObject;
+            dia.GetComponent<Diamond>().gem = gems;
             Destroy(this.gameObject);
-            player.Collect(gems);
+            
            
 
         }
