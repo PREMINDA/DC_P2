@@ -108,6 +108,8 @@ public abstract class Enemy : MonoBehaviour,IDamageable
         if (Health == 0)
         {
             Destroy(this.gameObject);
+            player.Collect(gems);
+           
 
         }
     }

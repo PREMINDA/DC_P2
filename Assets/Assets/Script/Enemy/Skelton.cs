@@ -14,9 +14,4 @@ public class Skelton : Enemy
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     }
     
-
-
-
-   
-    
 }

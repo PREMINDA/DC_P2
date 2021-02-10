@@ -16,6 +16,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField]
     private SpriteRenderer _Flip_Swordarc;
     public int Health { get; set; }
+    private int _diamondcount = 0;
 
 
     // Start is called before the first frame update
@@ -113,4 +114,10 @@ public class Player : MonoBehaviour,IDamageable
         yield return new WaitForSeconds(1f);
         _Movedirection.Jump(false);
     }
+    public void Collect(int dim)
+    {
+        _diamondcount += dim ; 
+        Debug.Log("Diamond Count "  + _diamondcount );
+    }
+
 }
