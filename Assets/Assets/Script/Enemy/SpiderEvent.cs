@@ -12,7 +12,7 @@ public class SpiderEvent : MonoBehaviour
     }
     public void fire()
     {
-        Debug.Log("Spider Should Attack");
+       
         spider.attack();
     }
 }
