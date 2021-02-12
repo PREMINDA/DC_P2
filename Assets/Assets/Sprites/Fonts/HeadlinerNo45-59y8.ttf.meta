@@ -1,21 +1,21 @@
 fileFormatVersion: 2
-guid: d14c1cdf004a5475588e8e9bc2eceb6e
+guid: 1b392bca24f02b143abb936b55789245
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
-  fontSize: 18
+  fontSize: 90
   forceTextureCase: -1
   characterSpacing: 0
   characterPadding: 1
   includeFontData: 1
-  fontName: Charlemagne Std
+  fontName: Headliner No. 45
   fontNames:
-  - Charlemagne Std
+  - Headliner No. 45
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
-  ascentCalculationMode: 0
-  useLegacyBoundsCalculation: 1
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
   shouldRoundAdvanceValue: 1
   userData: 
   assetBundleName: 
