@@ -3,31 +3,42 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Shop : MonoBehaviour
-{
+{ 
     public GameObject shopPanal;
-    private void OnTriggerEnter2D(Collider2D collision)
+    private bool _isEnable;
+    private Player player;
+    public void Start()
+    {
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    }
+
+    public void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.E) && _isEnable == true)
+        {
+            
+            shopPanal.SetActive(true);
+            UIManager.Instance.Openshop(player._diamondcount);
+        }
+        if (Input.GetKeyDown(KeyCode.Escape) && _isEnable == true)
+        {
+            shopPanal.SetActive(false);
+        }
+    } 
+        private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.E))
-            {
-                shopPanal.SetActive(true);
-            }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                shopPanal.SetActive(false);
-            }
 
-
+            _isEnable = true;
         }
-
 
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            shopPanal.SetActive(false);
+            _isEnable = false;
         }
     }
 }

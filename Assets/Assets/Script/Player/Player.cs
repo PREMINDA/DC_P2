@@ -16,7 +16,7 @@ public class Player : MonoBehaviour,IDamageable
     [SerializeField]
     private SpriteRenderer _Flip_Swordarc;
     public int Health { get; set; }
-    private int _diamondcount = 0;
+    public int _diamondcount = 0;
 
 
     // Start is called before the first frame update
