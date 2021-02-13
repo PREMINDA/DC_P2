@@ -19,10 +19,16 @@ public class UIManager : MonoBehaviour
         }
     }
     public Text playergem;
+    [SerializeField]
+    private Image _selectionIMG;
 
     public void Openshop(int gemcount)
     {
         playergem.text = gemcount.ToString()+" G";
+    }
+    public void UpdateSelection(int yPos)
+    {
+        _selectionIMG.rectTransform.anchoredPosition = new Vector2(_selectionIMG.rectTransform.anchoredPosition.x, yPos);
     }
 
     private void Awake()
