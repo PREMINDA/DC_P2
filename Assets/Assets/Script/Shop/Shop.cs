@@ -7,9 +7,21 @@ public class Shop : MonoBehaviour
     public GameObject shopPanal;
     private bool _isEnable;
     private Player player;
-    public void Start()
+    private int selectitem;
+
+    Dictionary<int, int> listitem;
+
+
+public void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+       listitem = new Dictionary<int, int>()
+        {
+            {0,200 },
+            {1,100 },
+            {2,400 }
+        };
+
     }
 
     public void Update()
@@ -43,18 +55,31 @@ public class Shop : MonoBehaviour
     }
     public void SelectItem(int item)
     {
+        
         switch (item)
         {
             case 0:
                 UIManager.Instance.UpdateSelection(129);
+                selectitem = item;
                 break;
             case 1:
                 UIManager.Instance.UpdateSelection(32);
+                selectitem = item;
                 break;
             case 2:
                 UIManager.Instance.UpdateSelection(-77);
+                selectitem = item;
                 break;
 
+        }
+    }
+
+    public void BuyItem()
+    {
+        if (player._diamondcount >= listitem[selectitem])
+        {
+            player._diamondcount = player._diamondcount - listitem[selectitem];
+            UIManager.Instance.Openshop(player._diamondcount);
         }
     }
 }
