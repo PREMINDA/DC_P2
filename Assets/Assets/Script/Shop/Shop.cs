@@ -10,6 +10,7 @@ public class Shop : MonoBehaviour
     private int selectitem;
 
     Dictionary<int, int> listitem;
+    Dictionary<int, string> itemname;
 
 
 public void Start()
@@ -21,7 +22,12 @@ public void Start()
             {1,100 },
             {2,400 }
         };
-
+        itemname = new Dictionary<int, string>
+        {
+            {0,"Sword" },
+            {1,"Key" },
+            {2,"light" }
+        };
     }
 
     public void Update()
@@ -80,6 +86,10 @@ public void Start()
         {
             player._diamondcount = player._diamondcount - listitem[selectitem];
             UIManager.Instance.Openshop(player._diamondcount);
+            if (itemname[selectitem] == "Key")
+            {
+                GameManager.Instance.HasKeyToCastle = true;
+            }
         }
     }
 }
